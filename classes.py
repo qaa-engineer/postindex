@@ -13,10 +13,13 @@ class Postindex:
         self.indexold = row[10]  # Старый почтовый индекс (до 01.02.2000)
 
     def all_content(self):
+        data=[]
         if self.postindex != None:
-            print("Почтовый индекс", self.postindex, sep=" - ")
+            postindex={"Почтовый индекс": self.postindex}
+            data.append(postindex)
         if self.opsname != None:
-            print("Отделение почты", self.opsname, sep=" - ")
+            opsname={"Отделение почты":self.opsname}
+            data.append(opsname)
         if self.opstype != None:
             if self.opstype == "ФГУП":
                 self.opstype = "Федеральное государственное унитарное предприятие (ФГУП)"
@@ -70,20 +73,29 @@ class Postindex:
                 self.opstype = "Дополнительный технологический индекс (ДТИ)"
             elif self.opstype == "Почтомат":
                 self.opstype = "Почтомат"
-            print("Тип почтового отделения", self.opstype, sep=" - ")
+            opstype={"Тип почтового отделения":self.opstype}
+            data.append(opstype)
         if self.opssubm != None:
-            print("Индекс вышестоящего почтового отделения", self.opssubm, sep=" - ")
+            opssubm={"Индекс вышестоящего почтового отделения": self.opssubm}
+            data.append(opssubm)
         if self.region != None:
-            print("Регион", self.region, sep=" - ")
+            region={"Регион": self.region}
+            data.append(region)
         if self.autonom != None:
-            print("Автономная область", self.autonom, sep=" - ")
+            autonom={"Автономная область": self.autonom}
         if self.area != None:
-            print("Район", self.area, sep=" - ")
+            area={"Район": self.area}
+            data.append(area)
         if self.city != None:
-            print("Населенный пункт", self.city, sep=" - ")
+            city={"Населенный пункт": self.city}
+            data.append(city)
         if self.city_1 != None:
-            print("Подчиненный населенный пункт", self.city_1, sep=" - ")
+            city_1={"Подчиненный населенный пункт":self.city_1}
+            data.append(city_1)
         if self.actdate != None:
-            print("Дата актуализации информации", self.actdate, sep=" - ")
+            actdate={"Дата актуализации информации": self.actdate}
+            data.append(actdate)
         if self.indexold != None:
-            print("Старый почтовый индекс (до 01.02.2000)", self.indexold, sep=" - ")
+            indexold={"Старый почтовый индекс (до 01.02.2000)": self.indexold}
+            data.append(indexold)
+        return data

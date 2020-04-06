@@ -3,6 +3,6 @@
 
 Используемые технологии:
 
-1. PostgreSQL 12<br>
-2. Python 3
-3. Django 2.0
+1. PostgreSQL 12
+2. Python 3.8.1
+3. Django 3.0.5

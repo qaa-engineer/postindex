@@ -14,10 +14,10 @@ cursor = connection.cursor()
 SQL_query = "SELECT * FROM public.postindex"
 cursor.execute(SQL_query)
 rows = cursor.fetchall()
-row=rows[207]
 
-content=Postindex(row)
-content.all_content()
+for row in rows:
+    content=Postindex(row)
+    print(content.all_content())
 
 
 # close the cursor
