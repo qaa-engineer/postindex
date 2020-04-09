@@ -1,14 +1,10 @@
 from django.shortcuts import render, redirect
-from .models import Name, Postindex
+from .models import Postindex
 
-
-# Create your views here.
 def index(request):
-    names_from_db=Name.objects.all()
-    context_dict={'names_from_context':names_from_db}
-    return render(request, 'index.html', context_dict)
+    return render(request, 'index.html')
 
 def postindex(request):
-    all_data=Postindex.objects.all()
-    context_all_data={'db':all_data}
-    return render(request, 'postindex.html', context_all_data)
+    data=Postindex.objects.all()[5909:5910]
+    context={'db':data}
+    return render(request, 'postindex.html', context)

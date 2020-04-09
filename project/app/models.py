@@ -1,12 +1,5 @@
 from django.db import models
 
-# Create your models here.
-class Name(models.Model):
-    name_value=models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.name_value
-
 # База данных почтовых индексов
 class Postindex(models.Model):
     id = models.BigAutoField(primary_key=True)
@@ -23,5 +16,6 @@ class Postindex(models.Model):
     index_old = models.IntegerField(blank=True, null=True)
 
     class Meta:
+        # Если managed = False, то Django не сможет редактировать базу данных
         managed = False
         db_table = 'postindex'
