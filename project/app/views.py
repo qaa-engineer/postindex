@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Name, AppData
+from .models import Name, Postindex
 
 
 # Create your views here.
@@ -9,6 +9,6 @@ def index(request):
     return render(request, 'index.html', context_dict)
 
 def postindex(request):
-    all_data=AppData.objects.all()
+    all_data=Postindex.objects.all()
     context_all_data={'db':all_data}
     return render(request, 'postindex.html', context_all_data)
