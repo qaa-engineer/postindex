@@ -1,4 +1,4 @@
-{% extends 'index.html' %}
+{% extends 'base.html' %}
 {% block title %}
 {% for row in db %}
 Почтовый индекс {{ row.post_name }}, {{ row.area }}, {{ row.region }}
@@ -29,7 +29,7 @@
 
     {% if row.post_type %}
     <h5 class="alert-heading text-muted">Тип почтового отделения</h5>
-    <h3>{{ row.post_type }}</h3>
+    <h3>{{ post_type }}</h3>
     {% endif %}
 
     {% if row.post_sub %}
@@ -60,11 +60,6 @@
     {% if row.city_1 %}
     <h5 class="alert-heading text-muted">Подчиненный населенный пункт</h5>
     <h3>{{ row.city_1 }}</h3>
-    {% endif %}
-
-    {% if row.actual_date %}
-    <h5 class="alert-heading text-muted">Дата актуализации информации</h5>
-    <h3>{{ row.actual_date }}</h3>
     {% endif %}
 
     {% if row.index_old %}
