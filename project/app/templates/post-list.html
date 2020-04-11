@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Почтовый индекс {{ post_name }}, {% if area %}{{ area }},{% endif %} {{ region }}
+{% endblock %}
+
+{% block section %}
+<h2 class="mt-5">Почтовый индекс {{ post_name }}, {% if area %}{{ area }},{% endif %} {{ region }}</h2>
+<h1 class="mt-5">{{ post_index_value }}</h1>
+{% endblock %}
+{% block container %}
+    {% if db %}
+    <div class="col-md-10 offset-1">
+        <h5 class="alert-heading text-muted">Почтовый индекс</h5>
+        <h3>{{ post_index_value }}</h3>
+
+        <h5 class="alert-heading text-muted">Адрес</h5>
+        <h3>{{ post_name }}, {% if area %}{{ area }},{% endif %} {{ region }}</h3>
+
+        {% if post_name %}
+        <h5 class="alert-heading text-muted">Отделение почты</h5>
+        <h3>{{ post_name }}</h3>
+        {% endif %}
+
+        {% if post_type %}
+        <h5 class="alert-heading text-muted">Тип почтового отделения</h5>
+        <h3>{{ post_type }}</h3>
+        {% endif %}
+
+        {% if post_sub %}
+        <h5 class="alert-heading text-muted">Индекс вышестоящего почтового отделения</h5>
+        <h3>{{ post_sub }}</h3>
+        {% endif %}
+
+        {% if region %}
+        <h5 class="alert-heading text-muted">Регион</h5>
+        <h3>{{ region }}</h3>
+        {% endif %}
+
+        {% if autonomy %}
+        <h5 class="alert-heading text-muted">Автономная область</h5>
+        <h3>{{ autonomy }}</h3>
+        {% endif %}
+
+        {% if area %}
+        <h5 class="alert-heading text-muted">Район</h5>
+        <h3>{{ area }}</h3>
+        {% endif %}
+
+        {% if city %}
+        <h5 class="alert-heading text-muted">Населенный пункт</h5>
+        <h3>{{ city }}</h3>
+        {% endif %}
+
+        {% if city_1 %}
+        <h5 class="alert-heading text-muted">Подчиненный населенный пункт</h5>
+        <h3>{{ city_1 }}</h3>
+        {% endif %}
+
+        {% if index_old %}
+        <h5 class="alert-heading text-muted">Старый почтовый индекс (до 01.02.2000)</h5>
+        <h3>{{ index_old }}</h3>
+        {% endif %}
+    </div>
+    {% endif %}
+    {% block pagination %}
+    {% if is_paginated %}
+    <div class="col-md-4 offset-md-4">
+        <nav aria-label="...">
+            <ul class="pagination">
+                <li class="page-item {% if not prev_url %}disabled{% endif %}">
+                    <a class="page-link" href="{{prev_url}}" tabindex="-1" aria-disabled="true">Previous</a>
+                </li>
+
+                {% for n in page_object.paginator.page_range %}
+                {% if page_object.number == n %}
+                <li class="page-item active" aria-current="page">
+                    <a class="page-link" href="?page={{ n }}">{{ n }} <span class="sr-only">(current)</span></a>
+                </li>
+                {% elif n > page_object.number|add:-3 and n < page_object.number|add:3%}
+                <li class="page-item"><a class="page-link" href="?page={{ n }}">{{ n }}</a></li>
+                {% endif %}
+                {% endfor %}
+
+                <li class="page-item {% if not next_url %}disabled{% endif %}">
+                    <a class="page-link" href="{{next_url}}" tabindex="-1" aria-disabled="true">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    {% endif %}
+    {% endblock %}
+{% endblock %}
