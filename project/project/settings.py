@@ -53,7 +53,9 @@ ROOT_URLCONF = 'project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -78,7 +80,7 @@ DATABASES = {
         'USER': 'postgres',
         'PASSWORD': 'djksa%s@w',
         'PORT': 5432,
-        'HOST':'localhost'
+        'HOST': 'localhost'
     }
 }
 

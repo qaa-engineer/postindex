@@ -18,4 +18,6 @@ class Postindex(models.Model):
     class Meta:
         # Если managed = False, то Django не сможет редактировать базу данных
         managed = False
+        # Порядок сортировки по выбранному полю
+        ordering=['id']
         db_table = 'postindex'
