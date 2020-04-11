@@ -1,72 +1,67 @@
 {% extends 'base.html' %}
+
 {% block title %}
-{% for row in db %}
-Почтовый индекс {{ row.post_name }}, {{ row.area }}, {{ row.region }}
-{% endfor %}
+Почтовый индекс {{ post_name }}, {{ area }}, {{ region }}
 {% endblock %}
+
 {% block section %}
-{% if db %}
-{% for row in db %}
-<h2 class="mt-5">Почтовый индекс {{ row.post_name }}, {{ row.area }}, {{ row.region }}</h2>
-<h1 class="mt-5">{{ row.post_index_value }}</h1>
-{% endfor %}
-{% endif %}
+<h2 class="mt-5">Почтовый индекс {{ post_name }}, {{ area }}, {{ region }}</h2>
+<h1 class="mt-5">{{ post_index_value }}</h1>
 {% endblock %}
+
 {% block container %}
 {% if db %}
-{% for row in db %}
 <div class="col-md-10 offset-1">
     <h5 class="alert-heading text-muted">Почтовый индекс</h5>
-    <h3>{{ row.post_index_value }}</h3>
+    <h3>{{ post_index_value }}</h3>
 
     <h5 class="alert-heading text-muted">Адрес</h5>
-    <h3>{{ row.post_name }}, {{ row.area }}, {{ row.region }}</h3>
+    <h3>{{ post_name }}, {{ area }}, {{ region }}</h3>
 
-    {% if row.post_name %}
+    {% if post_name %}
     <h5 class="alert-heading text-muted">Отделение почты</h5>
-    <h3>{{ row.post_name }}</h3>
+    <h3>{{ post_name }}</h3>
     {% endif %}
 
-    {% if row.post_type %}
+    {% if post_type %}
     <h5 class="alert-heading text-muted">Тип почтового отделения</h5>
     <h3>{{ post_type }}</h3>
     {% endif %}
 
-    {% if row.post_sub %}
+    {% if post_sub %}
     <h5 class="alert-heading text-muted">Индекс вышестоящего почтового отделения</h5>
-    <h3>{{ row.post_sub }}</h3>
+    <h3>{{ post_sub }}</h3>
     {% endif %}
 
-    {% if row.region %}
+    {% if region %}
     <h5 class="alert-heading text-muted">Регион</h5>
-    <h3>{{ row.region }}</h3>
+    <h3>{{ region }}</h3>
     {% endif %}
 
-    {% if row.autonomy %}
+    {% if autonomy %}
     <h5 class="alert-heading text-muted">Автономная область</h5>
-    <h3>{{ row.autonomy }}</h3>
+    <h3>{{ autonomy }}</h3>
     {% endif %}
 
-    {% if row.area %}
+    {% if area %}
     <h5 class="alert-heading text-muted">Район</h5>
-    <h3>{{ row.area }}</h3>
+    <h3>{{ area }}</h3>
     {% endif %}
 
-    {% if row.city %}
+    {% if city %}
     <h5 class="alert-heading text-muted">Населенный пункт</h5>
-    <h3>{{ row.city }}</h3>
+    <h3>{{ city }}</h3>
     {% endif %}
 
-    {% if row.city_1 %}
+    {% if city_1 %}
     <h5 class="alert-heading text-muted">Подчиненный населенный пункт</h5>
-    <h3>{{ row.city_1 }}</h3>
+    <h3>{{ city_1 }}</h3>
     {% endif %}
 
-    {% if row.index_old %}
+    {% if index_old %}
     <h5 class="alert-heading text-muted">Старый почтовый индекс (до 01.02.2000)</h5>
-    <h3>{{ row.index_old }}</h3>
+    <h3>{{ index_old }}</h3>
     {% endif %}
 </div>
-{% endfor %}
 {% endif %}
 {% endblock %}
