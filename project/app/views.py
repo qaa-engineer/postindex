@@ -79,3 +79,5 @@ def post_list(request):
                'post': post,
                }
     return render(request, 'post-detail.html', context=context)
+
+
