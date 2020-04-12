@@ -69,7 +69,7 @@
         <nav aria-label="...">
             <ul class="pagination">
                 <li class="page-item {% if not prev_url %}disabled{% endif %}">
-                    <a class="page-link" href="{{prev_url}}" tabindex="-1" aria-disabled="true">Previous</a>
+                    <a class="page-link" href="{{prev_url}}" tabindex="-1" aria-disabled="true">Назад</a>
                 </li>
 
                 {% for n in page_object.paginator.page_range %}
@@ -83,7 +83,7 @@
                 {% endfor %}
 
                 <li class="page-item {% if not next_url %}disabled{% endif %}">
-                    <a class="page-link" href="{{next_url}}" tabindex="-1" aria-disabled="true">Next</a>
+                    <a class="page-link" href="{{next_url}}" tabindex="-1" aria-disabled="true">Вперёд</a>
                 </li>
             </ul>
         </nav>
