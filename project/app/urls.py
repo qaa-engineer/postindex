@@ -5,6 +5,5 @@ from . import views
 
 urlpatterns = [
     path('', views.index),
-    path('postindex/', include([path('', views.post_list),
-                                ])),
+    path('postindex/', include([path('', views.post_list)]), name='post-list-url'),
 ]

@@ -1,6 +1,6 @@
-from django.views.generic import ListView, DeleteView
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.paginator import Paginator
 from django.shortcuts import render
+from django.db.models import Q
 from .models import Postindex
 from .functions.get_post_type import get_post_type
 
@@ -13,12 +13,26 @@ def post_list(request):
     """
     Вывод постов
     """
-    posts = Postindex.objects.all()
+
+    search_query = request.GET.get('search', '')
+    if search_query:
+        posts=Postindex.objects.filter(Q(post_index_value__icontains=search_query)  |
+                                       Q(post_name__icontains=search_query) |
+                                       Q(post_type__icontains=search_query) |
+                                       Q(post_sub__icontains=search_query) |
+                                       Q(region__icontains=search_query) |
+                                       Q(autonomy__icontains=search_query) |
+                                       Q(area__icontains=search_query) |
+                                       Q(city__icontains=search_query) |
+                                       Q(city_1__icontains=search_query))
+    else:
+        posts=Postindex.objects.all()
+
     # Количество постов на странице
-    number_of_records_per_page = 1
+    number_of_records_per_page = 10
     paginator = Paginator(posts, number_of_records_per_page)
     # Номер странцы пагинации по умолчанию
-    number_of_records_deafult=2
+    number_of_records_deafult = 2
     page_number = request.GET.get('page', number_of_records_deafult)
     page = paginator.get_page(page_number)
     is_paginated = page.has_other_pages()
@@ -30,6 +44,7 @@ def post_list(request):
         next_url = '?page={}'.format(page.next_page_number())
     else:
         next_url = ''
+
     post = posts[:page.number]
     for row in post:
         id = row.id
@@ -63,4 +78,4 @@ def post_list(request):
                'next_url': next_url,
                'post': post,
                }
-    return render(request, 'post-list.html', context=context)
+    return render(request, 'post-detail.html', context=context)
