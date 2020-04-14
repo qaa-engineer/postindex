@@ -8,11 +8,7 @@ from .functions.get_post_type import get_post_type
 def index(request):
     return render(request, 'base.html')
 
-
-def post_list(request):
-    """
-    Вывод постов
-    """
+def search(request):
     # Поиск по базе
     search_query = request.GET.get('search', '')
     if search_query:
@@ -22,8 +18,14 @@ def post_list(request):
                                          Q(region__icontains=search_query)
                                          )
     else:
-        posts = Postindex.objects.all()[:900]
+        posts = Postindex.objects.all()
+    return render(request, "post-detail.html")
 
+def post_list(request):
+    """
+    Вывод постов
+    """
+    posts = Postindex.objects.all()
     # Количество постов на странице
     number_of_records_per_page = 1
     paginator = Paginator(posts, number_of_records_per_page)
