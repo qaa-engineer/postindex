@@ -10,61 +10,61 @@
 {% endblock %}
 {% block container %}
 
-    {% if post %}
-    <div class="col-md-10 offset-1">
-        <h5 class="alert-heading text-muted">Почтовый индекс</h5>
-        <h3>{{ post_index_value }}</h3>
+{% if post %}
+<div class="col-md-10 offset-1">
+    <h5 class="alert-heading text-muted">Почтовый индекс</h5>
+    <h3>{{ post_index_value }}</h3>
 
-        <h5 class="alert-heading text-muted">Адрес</h5>
-        <h3>{{ post_name }}, {% if area %}{{ area }},{% endif %} {{ region }}</h3>
+    <h5 class="alert-heading text-muted">Адрес</h5>
+    <h3>{{ post_name }}, {% if area %}{{ area }},{% endif %} {{ region }}</h3>
 
-        {% if post_name %}
-        <h5 class="alert-heading text-muted">Отделение почты</h5>
-        <h3>{{ post_name }}</h3>
-        {% endif %}
-
-        {% if post_type %}
-        <h5 class="alert-heading text-muted">Тип почтового отделения</h5>
-        <h3>{{ post_type }}</h3>
-        {% endif %}
-
-        {% if post_sub %}
-        <h5 class="alert-heading text-muted">Индекс вышестоящего почтового отделения</h5>
-        <h3>{{ post_sub }}</h3>
-        {% endif %}
-
-        {% if region %}
-        <h5 class="alert-heading text-muted">Регион</h5>
-        <h3>{{ region }}</h3>
-        {% endif %}
-
-        {% if autonomy %}
-        <h5 class="alert-heading text-muted">Автономная область</h5>
-        <h3>{{ autonomy }}</h3>
-        {% endif %}
-
-        {% if area %}
-        <h5 class="alert-heading text-muted">Район</h5>
-        <h3>{{ area }}</h3>
-        {% endif %}
-
-        {% if city %}
-        <h5 class="alert-heading text-muted">Населенный пункт</h5>
-        <h3>{{ city }}</h3>
-        {% endif %}
-
-        {% if city_1 %}
-        <h5 class="alert-heading text-muted">Подчиненный населенный пункт</h5>
-        <h3>{{ city_1 }}</h3>
-        {% endif %}
-
-        {% if index_old %}
-        <h5 class="alert-heading text-muted">Старый почтовый индекс (до 01.02.2000)</h5>
-        <h3>{{ index_old }}</h3>
-        {% endif %}
-    </div>
+    {% if post_name %}
+    <h5 class="alert-heading text-muted">Отделение почты</h5>
+    <h3>{{ post_name }}</h3>
     {% endif %}
 
-    {% block pagination %}
-    {% endblock %}
+    {% if post_type %}
+    <h5 class="alert-heading text-muted">Тип почтового отделения</h5>
+    <h3>{{ post_type }}</h3>
+    {% endif %}
+
+    {% if post_sub %}
+    <h5 class="alert-heading text-muted">Индекс вышестоящего почтового отделения</h5>
+    <h3>{{ post_sub }}</h3>
+    {% endif %}
+
+    {% if region %}
+    <h5 class="alert-heading text-muted">Регион</h5>
+    <h3>{{ region }}</h3>
+    {% endif %}
+
+    {% if autonomy %}
+    <h5 class="alert-heading text-muted">Автономная область</h5>
+    <h3>{{ autonomy }}</h3>
+    {% endif %}
+
+    {% if area %}
+    <h5 class="alert-heading text-muted">Район</h5>
+    <h3>{{ area }}</h3>
+    {% endif %}
+
+    {% if city %}
+    <h5 class="alert-heading text-muted">Населенный пункт</h5>
+    <h3>{{ city }}</h3>
+    {% endif %}
+
+    {% if city_1 %}
+    <h5 class="alert-heading text-muted">Подчиненный населенный пункт</h5>
+    <h3>{{ city_1 }}</h3>
+    {% endif %}
+
+    {% if index_old %}
+    <h5 class="alert-heading text-muted">Старый почтовый индекс (до 01.02.2000)</h5>
+    <h3>{{ index_old }}</h3>
+    {% endif %}
+</div>
+{% endif %}
+
+{% block pagination %}
+{% endblock %}
 {% endblock %}

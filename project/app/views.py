@@ -1,12 +1,8 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render
-from django.shortcuts import redirect
 from django.db.models import Q
 from .models import Postindex
 from .functions.get_post_type import get_post_type
-from django.template import RequestContext
-from django.http import Http404
-from django.urls import reverse
 
 
 def home(request):
@@ -15,7 +11,7 @@ def home(request):
 
 def search(request):
     """
-    Вывод постов
+    Функция поиска по сайту
     """
     search_query = request.GET.get('search', '')
     if search_query:
@@ -27,12 +23,17 @@ def search(request):
     else:
         posts = Postindex.objects.all()
     context = {'posts': posts,
-               'search_query':search_query,
+               'search_query': search_query,
                }
     return render(request, 'search-result.html', context=context)
 
 
 def post_list(request):
+    """
+    Функция вывода списка всех постов
+    :param request:
+    :return:
+    """
     # Вывод всех данных из таблицы БД, равнозначно запросу SELECT * FROM public.postindex
     posts = Postindex.objects.all()
     # Создаем объект класса пагинации, второй параметр - это количество постов на каждой странице
@@ -66,6 +67,12 @@ def post_list(request):
 
 
 def post_detail(request, slug):
+    """
+    Функция для отображения отдельного поста
+    :param request:
+    :param slug:
+    :return:
+    """
     # Вывод всех данных из таблицы БД, равнозначно запросу SELECT * FROM public.postindex
     post = Postindex.objects.get(post_index_value__iexact=slug)
 
