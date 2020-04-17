@@ -94,12 +94,40 @@ def post_list(request):
     # page - это posts, то есть вся БД, разделенная на страницы пагинации
     # Анализируем URL, достаем номер страницы пагинации из параметра ?page=10 и отдаем данные для этой страницы
     # Второй параметр в функции GET.get() - номер выбранной страницы по умолчанию, например, 1 - это начальная страница
-    page = paginator.get_page(request.GET.get('page', 10))
-    context = {'posts': page}
+    pages = paginator.get_page(request.GET.get('page', 10))
+    context = {'pages': pages}
     return render(request, 'post-list.html', context)
+
 
 def post_detail(request, slug):
     # Вывод всех данных из таблицы БД, равнозначно запросу SELECT * FROM public.postindex
     post = Postindex.objects.get(post_index_value__iexact=slug)
-    context = {'post': post}
+
+    id = post.id
+    post_index_value = post.post_index_value
+    post_name = post.post_name
+    post_type = get_post_type(post.post_type)
+    post_sub = post.post_sub
+    region = post.region
+    autonomy = post.autonomy
+    area = post.area
+    city = post.city
+    city_1 = post.city_1
+    actual_date = post.actual_date
+    index_old = post.index_old
+
+    context = {'post': post,
+               'id': id,
+               'post_index_value': post_index_value,
+               'post_name': post_name,
+               'post_type': post_type,
+               'post_sub': post_sub,
+               'region': region,
+               'autonomy': autonomy,
+               'area': area,
+               'city': city,
+               'city_1': city_1,
+               'actual_date': actual_date,
+               'index_old': index_old,
+               }
     return render(request, 'post-detail.html', context)
