@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Post List
+{{ block.super }}
 {% endblock %}
 
 
@@ -14,7 +14,7 @@ Post List
         <ul class="list-group list-group-flush">
             {% for page in pages %}
                 <li class="list-group-item"><a href="{{ page.get_absolute_url }}">
-                    Почтовый индекс {{ page.post_name }}, {% if page.area %}{{ page.area }},{% endif %} {{ page.region }}</a>
+                    {{ page.post_index_value }} - почтовый индекс {{ page.post_name }}, {% if page.area %}{{ page.area }},{% endif %} {{ page.region }}</a>
                 </li>
             {% endfor %}
         </ul>
@@ -29,12 +29,12 @@ Post List
                 <a class="page-link" href="{{prev_url}}" tabindex="-1" aria-disabled="true">Назад</a>
             </li>
 
-            {% for n in page.paginator.page_range %}
-            {% if page.number == n %}
+            {% for n in pages.paginator.page_range %}
+            {% if pages.number == n %}
             <li class="page-item active" aria-current="page">
                 <a class="page-link" href="?page={{ n }}">{{ n }} <span class="sr-only">(current)</span></a>
             </li>
-            {% elif n > page.number|add:-3 and n < page.number|add:3%}
+            {% elif n > pages.number|add:-3 and n < pages.number|add:3%}
             <li class="page-item"><a class="page-link" href="?page={{ n }}">{{ n }}</a></li>
             {% endif %}
             {% endfor %}

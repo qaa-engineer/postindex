@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
-
+{% block description %}Почтовый индекс {{ post_name }}, {% if area %}{{ area }},{% endif %} {{ region }}{% endblock %}
 {% block title %}
-Почтовый индекс {{ post_name }}, {% if area %}{{ area }},{% endif %} {{ region }}
+{{ post_index_value }} - почтовый индекс {{ post_name }}, {% if area %}{{ area }},{% endif %} {{ region }}
 {% endblock %}
 
 {% block section %}
