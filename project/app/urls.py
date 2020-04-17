@@ -1,9 +1,10 @@
 from django.urls import path, include
 from django.conf.urls import url
 from django.contrib import admin
-from . import views
+from .views import *
 
 urlpatterns = [
-    path('', views.index),
-    path('postindex/', include([path('', views.post_list)]), name='post-list-url'),
+    path('', home, name='home'),
+    path('postindex/', post_list, name='post_list_url'),
+    path('postindex/<slug>/', post_detail, name='post_detail_url'),
 ]
