@@ -36,6 +36,7 @@
         }
       }
 
+
     </style>
 </head>
 <body>
@@ -49,7 +50,7 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/">Главная</a>
+                    <a class="nav-link" href="{% url 'home' %}">Главная</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'post_list_url' %}">Почтовые индексы</a>
@@ -69,7 +70,7 @@
                 последних версий базы почтовых индексов Почты России</p>
             <p class="lead text-muted">Вы можете воспользоваться поиском индекса по адресу или адреса по индексу.</p>
             <div class="col-md offset-md-4 offset-sm-2">
-                <form class="form-inline mt-2 mt-md-0" action="/postindex">
+                <form class="form-inline mt-2 mt-md-0" action="{% url 'search' %}">
                     <input class="form-control mr-sm-2" type="text" placeholder="Текст для поиска ..."
                            aria-label="Search"
                            name="search">

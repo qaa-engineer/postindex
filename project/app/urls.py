@@ -7,4 +7,5 @@ urlpatterns = [
     path('', home, name='home'),
     path('postindex/', post_list, name='post_list_url'),
     path('postindex/<slug>/', post_detail, name='post_detail_url'),
+    path('search/', search, name='search'),
 ]
