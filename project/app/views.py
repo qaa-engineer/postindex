@@ -95,7 +95,27 @@ def post_list(request):
     # Анализируем URL, достаем номер страницы пагинации из параметра ?page=10 и отдаем данные для этой страницы
     # Второй параметр в функции GET.get() - номер выбранной страницы по умолчанию, например, 1 - это начальная страница
     pages = paginator.get_page(request.GET.get('page', 10))
-    context = {'pages': pages}
+    ###########################################################
+    # Вывод формы пагинации
+    ###########################################################
+
+    # Определяем существование страниц для пагинации
+    is_paginated = pages.has_other_pages()
+
+    # Определяем номера страниц Назад и Вперед для передачи их в context
+    if pages.has_previous():
+        prev_url = '?page={}'.format(pages.previous_page_number())
+    else:
+        prev_url = ''
+    if pages.has_next():
+        next_url = '?page={}'.format(pages.next_page_number())
+    else:
+        next_url = ''
+    ###########################################################
+    context = {'pages': pages,
+               'is_paginated': is_paginated,
+               'prev_url': prev_url,
+               'next_url': next_url}
     return render(request, 'post-list.html', context)
 
 

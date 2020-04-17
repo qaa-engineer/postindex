@@ -6,7 +6,7 @@ Post List
 
 
 {% block section %}
-
+<h1 class="mt-5">Почтовые индексы РФ</h1>
 {% endblock %}
 
 {% block container %}
@@ -21,19 +21,20 @@ Post List
     </div>
 {% block pagination %}
 {% if is_paginated %}
-<div class="col-md-4 offset-md-4">
+<div class="container mt-5">
+    <div class="col-md-4 offset-md-4">
     <nav aria-label="...">
         <ul class="pagination">
             <li class="page-item {% if not prev_url %}disabled{% endif %}">
                 <a class="page-link" href="{{prev_url}}" tabindex="-1" aria-disabled="true">Назад</a>
             </li>
 
-            {% for n in page_object.paginator.page_range %}
-            {% if page_object.number == n %}
+            {% for n in page.paginator.page_range %}
+            {% if page.number == n %}
             <li class="page-item active" aria-current="page">
                 <a class="page-link" href="?page={{ n }}">{{ n }} <span class="sr-only">(current)</span></a>
             </li>
-            {% elif n > page_object.number|add:-3 and n < page_object.number|add:3%}
+            {% elif n > page.number|add:-3 and n < page.number|add:3%}
             <li class="page-item"><a class="page-link" href="?page={{ n }}">{{ n }}</a></li>
             {% endif %}
             {% endfor %}
@@ -43,6 +44,7 @@ Post List
             </li>
         </ul>
     </nav>
+</div>
 </div>
 {% endif %}
 {% endblock %}
