@@ -6,10 +6,19 @@
 
 
 {% block section %}
-<h1 class="mt-5">По вашему запросу найдено:</h1>
+<h3 class="mt-5">Результаты поиска по запросу "{{ search_query }}":</h3>
 {% endblock %}
 
 {% block container %}
+
+{% for post in posts %}
+
+{{ post.post_index_value }}
+
+{% endfor %}
+
+
+
     <div class="bd-example">
         <ul class="list-group list-group-flush">
             {% for page in pages %}
